@@ -1,77 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.github.ejchathuranga.newsapp.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".LoginActivity">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="WWN"
-            android:textSize="40sp"
-            android:gravity="center"
-            android:textColor="@color/red_600"/>
+            android:orientation="vertical"
+            android:layout_margin="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Word Wide News"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:textColor="@color/red_600"
-            android:layout_marginBottom="30dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WWN"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:textColor="@color/red_600"/>
 
-        <EditText
-            android:id="@+id/etUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:textSize="15sp"
-            android:layout_marginBottom="10dp"
-            android:padding="8dp"
-            android:background="@drawable/round_gray_corner_no_fill"
-            android:hint="User Name"
-            />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Word Wide News"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="@color/red_600"
+                android:layout_marginBottom="30dp"/>
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:textSize="15sp"
-            android:layout_marginBottom="30dp"
-            android:padding="8dp"
-            android:background="@drawable/round_gray_corner_no_fill"
-            android:hint="Password"
-            />
+            <EditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textSize="15sp"
+                android:layout_marginBottom="10dp"
+                android:padding="8dp"
+                android:text="@={viewModel.username}"
+                android:background="@drawable/round_gray_corner_no_fill"
+                android:hint="User Name"
+                />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textSize="15sp"
+                android:layout_marginBottom="30dp"
+                android:padding="8dp"
+                android:text="@={viewModel.password}"
+                android:background="@drawable/round_gray_corner_no_fill"
+                android:hint="Password"
+                />
 
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            app:strokeColor="@color/red_600"
-            app:cornerRadius="30dp"
-            style="?attr/materialButtonOutlinedStyle"/>
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                app:strokeColor="@color/red_600"
+                app:cornerRadius="30dp"
+                style="?attr/materialButtonOutlinedStyle"/>
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:gravity="right"/>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:gravity="right"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
