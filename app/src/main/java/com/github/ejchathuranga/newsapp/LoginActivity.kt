@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import com.github.ejchathuranga.newsapp.databinding.ActivityLoginBinding
 
@@ -19,11 +20,21 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViewModel()
+        initObservers()
     }
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        Log.d(TAG, "initViewModel: " + viewModel)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
+        binding.btnLogin.setOnClickListener {
+            viewModel.login()
+        }
+    }
+
+
+    private fun initObservers() {
 
         viewModel.getErrorMsg().observe(this) {
             if (it != null) {
@@ -32,11 +43,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
-        binding.btnLogin.setOnClickListener {
-            viewModel.login()
-        }
     }
-
 
     companion object {
         private const val TAG = "LoginActivity"

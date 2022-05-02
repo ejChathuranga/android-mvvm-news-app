@@ -1,7 +1,5 @@
 package com.github.ejchathuranga.newsapp
 
-import android.util.Log
-import android.view.View
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.MutableLiveData
@@ -26,20 +24,25 @@ class LoginViewModel : ViewModel(), Observable {
     }
 
     fun login() {
-        Log.d(TAG, "login: ")
-        errorMsg.postValue("Testing...")
-    }
+        val validateResponse: ValidateResponse = user.validate(username.value, password.value)
 
-    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        TODO("Not yet implemented")
+        if (validateResponse.success) {
+            //TODO :: go to dashboard
+        } else {
+            errorMsg.postValue(validateResponse.msg)
+        }
     }
 
     companion object {
         private const val TAG = "LoginViewModel"
+    }
+
+    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        //TODO("Not yet implemented")
+    }
+
+    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
+        //TODO("Not yet implemented")
     }
 
 }
