@@ -1,7 +1,9 @@
-package com.github.ejchathuranga.newsapp
+package com.github.ejchathuranga.newsapp.data.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.github.ejchathuranga.newsapp.data.model.LoginUser
+import com.github.ejchathuranga.newsapp.data.model.ValidateResponse
 
 class LoginViewModel : ViewModel() {
 

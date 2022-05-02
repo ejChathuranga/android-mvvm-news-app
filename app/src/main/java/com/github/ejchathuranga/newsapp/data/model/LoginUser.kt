@@ -1,4 +1,4 @@
-package com.github.ejchathuranga.newsapp
+package com.github.ejchathuranga.newsapp.data.model
 
 data class LoginUser(var username: String, var password: String) {
     fun validate(username: String?, password: String?): ValidateResponse {

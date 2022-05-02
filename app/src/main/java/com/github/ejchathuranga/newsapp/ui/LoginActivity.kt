@@ -1,12 +1,12 @@
-package com.github.ejchathuranga.newsapp
+package com.github.ejchathuranga.newsapp.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
+import com.github.ejchathuranga.newsapp.data.viewmodel.LoginViewModel
+import com.github.ejchathuranga.newsapp.R
 import com.github.ejchathuranga.newsapp.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
