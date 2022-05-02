@@ -1,48 +1,32 @@
 package com.github.ejchathuranga.newsapp
 
-import androidx.databinding.Bindable
-import androidx.databinding.Observable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class LoginViewModel : ViewModel(), Observable {
-    @Bindable
-    val username = MutableLiveData<String>()
+class LoginViewModel : ViewModel() {
 
-    @Bindable
-    val password = MutableLiveData<String>()
+    private val username = MutableLiveData<String>()
+    private val password = MutableLiveData<String>()
+    private val loginSuccess = MutableLiveData<ValidateResponse>()
+    private val user: LoginUser = LoginUser("", "")
 
-    private val user: LoginUser
-    private var errorMsg: MutableLiveData<String> = MutableLiveData();
-
-    init {
-        user = LoginUser("", "")
+    fun getUsername(): MutableLiveData<String> {
+        return this.username
     }
 
-    fun getErrorMsg(): MutableLiveData<String> {
-        return this.errorMsg;
+    fun getPassword(): MutableLiveData<String> {
+        return this.password
+    }
+
+    fun getLoginSuccess(): MutableLiveData<ValidateResponse> {
+        return this.loginSuccess;
     }
 
     fun login() {
-        val validateResponse: ValidateResponse = user.validate(username.value, password.value)
-
-        if (validateResponse.success) {
-            //TODO :: go to dashboard
-        } else {
-            errorMsg.postValue(validateResponse.msg)
-        }
+        this.loginSuccess.postValue(user.validate(username.value, password.value))
     }
 
     companion object {
         private const val TAG = "LoginViewModel"
     }
-
-    override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        //TODO("Not yet implemented")
-    }
-
-    override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
-        //TODO("Not yet implemented")
-    }
-
 }

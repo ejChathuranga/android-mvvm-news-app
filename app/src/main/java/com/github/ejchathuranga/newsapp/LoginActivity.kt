@@ -1,5 +1,6 @@
 package com.github.ejchathuranga.newsapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -35,13 +36,11 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun initObservers() {
-
-        viewModel.getErrorMsg().observe(this) {
-            if (it != null) {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
-            }
+        viewModel.getLoginSuccess().observe(this) {
+            if (it.success)
+                startActivity(Intent(this, HomeActivity::class.java))
+            else
+                Toast.makeText(this, it.msg, Toast.LENGTH_SHORT).show()
         }
     }
 
