@@ -11,6 +11,7 @@
         android:theme="@style/Theme.NewsApp">
         <activity
             android:name=".ui.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".ui.HomeActivity"

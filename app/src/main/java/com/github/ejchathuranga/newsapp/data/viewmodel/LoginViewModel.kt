@@ -1,5 +1,6 @@
 package com.github.ejchathuranga.newsapp.data.viewmodel
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.ejchathuranga.newsapp.data.model.LoginUser
@@ -24,7 +25,7 @@ class LoginViewModel : ViewModel() {
         return this.loginSuccess;
     }
 
-    fun login() {
+    fun login(view: View) {
         this.loginSuccess.postValue(user.validate(username.value, password.value))
     }
 
