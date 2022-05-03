@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.github.ejchathuranga.newsapp.data.viewmodel.LoginViewModel
 import com.github.ejchathuranga.newsapp.R
 import com.github.ejchathuranga.newsapp.databinding.ActivityLoginBinding
+import com.github.ejchathuranga.newsapp.ui.home.HomeActivity
 
 class LoginActivity : AppCompatActivity() {
 

@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintVertical_chainStyle="spread"
-        tools:context=".ui.HomeActivity">
+        tools:context=".ui.home.HomeActivity">
 
         <LinearLayout
             android:id="@+id/linearLayout5"
@@ -45,7 +45,6 @@
                     android:hint="Search"
                     android:inputType="textPersonName"
                     android:padding="8dp"
-                    android:text="@={viewModel.getUsername}"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +95,9 @@
                 android:layout_height="wrap_content"
                 android:text="Breaking News"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBreakingNews"
@@ -104,7 +105,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/breaking_news_item"/>
+                tools:listitem="@layout/breaking_news_holder"/>
         </LinearLayout>
 
 
@@ -124,7 +125,9 @@
                 android:layout_height="wrap_content"
                 android:text="Top News"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTopNews"
