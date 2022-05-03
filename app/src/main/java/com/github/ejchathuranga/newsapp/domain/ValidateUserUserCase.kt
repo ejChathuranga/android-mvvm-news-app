@@ -27,6 +27,6 @@ class ValidateUserUserCase {
         if (!user.pass.equals(user.passC))
             return ValidateResponse(false, "Password Didn't Matched")
 
-        return ValidateResponse(true, "")
+        return ValidateResponse(true)
     }
 }
