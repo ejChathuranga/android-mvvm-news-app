@@ -7,14 +7,23 @@ import com.github.ejchathuranga.newsapp.data.repositories.NewsRepository
 
 class HomeViewModel:ViewModel() {
     private val repository =  NewsRepository()
-    private var searchByCountry = MutableLiveData<ValidateResponse>()
+    private var breakingNews = MutableLiveData<ValidateResponse>()
+    private var topNews = MutableLiveData<ValidateResponse>()
 
-    fun getSearchByCountry(): MutableLiveData<ValidateResponse>{
-        return this.searchByCountry
+    fun getBreakingNews(): MutableLiveData<ValidateResponse>{
+        return this.breakingNews
     }
 
-    fun searchByCountry(){
-        repository.getNewsByCountry(searchByCountry)
+    fun getTopNews(): MutableLiveData<ValidateResponse>{
+        return this.topNews
+    }
+
+    fun searchBreakingNews(){
+        repository.getNewsByCountry(breakingNews)
+    }
+
+    fun searchTopNews(){
+        repository.getTopNews(topNews)
     }
 
 }

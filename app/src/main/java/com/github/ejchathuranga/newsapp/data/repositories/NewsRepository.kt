@@ -24,7 +24,21 @@ class NewsRepository {
                 searchByCountry.postValue(ValidateResponse(false, t.localizedMessage))
                 t.printStackTrace()
             }
+        })
+    }
 
+    fun getTopNews(topNews: MutableLiveData<ValidateResponse>) {
+        val call: Call<MainResponse> = service.getTopNews()
+
+        call.enqueue(object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                topNews.postValue(ResponseValidator().validateResponse(response))
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                topNews.postValue(ValidateResponse(false, t.localizedMessage))
+                t.printStackTrace()
+            }
         })
     }
 }

@@ -7,4 +7,7 @@ import retrofit2.http.GET
 interface NewsEndpoints {
     @GET(value = "v2/top-headlines?country=us&apiKey=" + RetroInstance.API_KEY)
     fun getNewsByCountry(): Call<MainResponse>
+
+    @GET(value = "v2/everything?q=bitcoin&apiKey=" + RetroInstance.API_KEY)
+    fun getTopNews(): Call<MainResponse>
 }
