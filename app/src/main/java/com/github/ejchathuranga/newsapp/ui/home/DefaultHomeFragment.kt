@@ -1,5 +1,6 @@
 package com.github.ejchathuranga.newsapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,8 +15,9 @@ import com.github.ejchathuranga.newsapp.data.model.api.Article
 import com.github.ejchathuranga.newsapp.data.viewmodel.DefaultHomeViewModel
 import com.github.ejchathuranga.newsapp.data.viewmodel.HomeViewModel
 import com.github.ejchathuranga.newsapp.databinding.FragmentDefaultHomeBinding
+import com.github.ejchathuranga.newsapp.ui.NewsActivity
 
-class DefaultHomeFragment : Fragment() {
+class DefaultHomeFragment : Fragment(), OnNewsClick {
 
     lateinit var binding: FragmentDefaultHomeBinding
     lateinit var viewModel: DefaultHomeViewModel
@@ -38,6 +40,7 @@ class DefaultHomeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(DefaultHomeViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
 
         initObservers()
         initEnv()
@@ -65,10 +68,12 @@ class DefaultHomeFragment : Fragment() {
 
     private fun initEnv() {
         breakingNewsAdapter = BreakingNewsAdapter()
+        breakingNewsAdapter.setCallback(this)
         binding.rvBreakingNews.adapter = breakingNewsAdapter
         viewModel.searchBreakingNews()
 
         topNewsAdapter = TopNewsAdapter()
+        topNewsAdapter.setCallback(this)
         binding.rvTopNews.adapter = topNewsAdapter
         viewModel.searchTopNews()
 
@@ -77,6 +82,14 @@ class DefaultHomeFragment : Fragment() {
     public companion object {
         @JvmStatic
         public fun newInstance() = DefaultHomeFragment()
+    }
+
+    override fun onCLick(article: Article) {
+        val intent = Intent(context, NewsActivity::class.java)
+
+        intent.putExtra("article", article)
+
+        startActivity(intent)
     }
 
 }

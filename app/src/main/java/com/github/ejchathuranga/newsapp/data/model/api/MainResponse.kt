@@ -1,5 +1,7 @@
 package com.github.ejchathuranga.newsapp.data.model.api
 
+import java.io.Serializable
+
 data class MainResponse(
     var status: String,
     val totalResults: Int,
@@ -14,4 +16,4 @@ data class Article(
     val urlToImage: String,
     val publishedAt: String,
     val content: String
-) {}
+):Serializable {}

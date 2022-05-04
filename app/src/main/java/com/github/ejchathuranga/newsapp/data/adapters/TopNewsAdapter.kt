@@ -5,10 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.ejchathuranga.newsapp.data.model.api.Article
 import com.github.ejchathuranga.newsapp.databinding.TopNewsHolderBinding
+import com.github.ejchathuranga.newsapp.ui.home.OnNewsClick
 import com.github.ejchathuranga.newsapp.ui.home.TopNewsViewHolder
 
 class TopNewsAdapter() : RecyclerView.Adapter<TopNewsViewHolder>() {
     private var dataList = ArrayList<Article>()
+
+    fun setCallback(cb: OnNewsClick) {
+
+    }
 
     fun setData(dataList: ArrayList<Article>) {
         val oldSize = this.dataList.size
@@ -29,4 +34,5 @@ class TopNewsAdapter() : RecyclerView.Adapter<TopNewsViewHolder>() {
     override fun getItemCount(): Int {
         return this.dataList.size
     }
+
 }
