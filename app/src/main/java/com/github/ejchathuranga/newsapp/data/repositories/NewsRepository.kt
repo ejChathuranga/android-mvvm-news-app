@@ -43,8 +43,21 @@ class NewsRepository {
     }
 
     fun searchNews(
+        text: String,
         searchResult: MutableLiveData<ValidateResponse>
     ) {
+        val call: Call<MainResponse> = service.search(text, RetroInstance.API_KEY)
+
+        call.enqueue(object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                searchResult.postValue(ResponseValidator().validateResponse(response))
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                searchResult.postValue(ValidateResponse(false, t.localizedMessage))
+                t.printStackTrace()
+            }
+        })
 
     }
 }

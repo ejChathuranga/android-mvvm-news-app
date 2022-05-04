@@ -43,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_gray_corner_no_fill"
                     android:hint="Search"
+                    android:text="@={viewModel.getSearchText}"
                     android:inputType="textPersonName"
                     android:padding="8dp"
                     android:textSize="15sp"

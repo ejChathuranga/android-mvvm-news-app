@@ -5,16 +5,20 @@ import androidx.lifecycle.ViewModel
 import com.github.ejchathuranga.newsapp.data.model.ValidateResponse
 import com.github.ejchathuranga.newsapp.data.repositories.NewsRepository
 
-class SearchHomeViewModel(): ViewModel() {
-    private val repository =  NewsRepository()
+class SearchHomeViewModel() : ViewModel() {
+    private val repository = NewsRepository()
     private var searchResult = MutableLiveData<ValidateResponse>()
-
+    private lateinit var searchString: String
 
     fun getTopNews(): MutableLiveData<ValidateResponse> {
         return this.searchResult
     }
 
-    fun search(){
-        repository.getTopNews(searchResult)
+    fun setSearchString(text: String) {
+        this.searchString = text
+    }
+
+    fun search() {
+        repository.searchNews(searchString, searchResult)
     }
 }

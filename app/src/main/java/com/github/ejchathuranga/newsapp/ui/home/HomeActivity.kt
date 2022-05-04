@@ -3,6 +3,7 @@ package com.github.ejchathuranga.newsapp.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
@@ -46,22 +47,25 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun searchView(){
+    private fun searchView() {
         supportFragmentManager.commit {
+            val bundle = bundleOf("searchText" to viewModel.getSearchText().value)
             setReorderingAllowed(true)
-            replace<SearchHomeFragment>(R.id.flHomeContainer)
+
+            replace(R.id.flHomeContainer, SearchHomeFragment::class.java, bundle)
             addToBackStack("searchHomeFragment")
         }
         binding.ivSearchIcon.setImageResource(R.drawable.ic_baseline_close_24)
     }
 
-    private fun defaultView(){
+    private fun defaultView() {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             replace<DefaultHomeFragment>(R.id.flHomeContainer)
             addToBackStack("defaultHomeFragment")
         }
         binding.ivSearchIcon.setImageResource(R.drawable.ic_baseline_search_24)
+        binding.etSearchText.setText("")
     }
 
     private fun initEnv() {

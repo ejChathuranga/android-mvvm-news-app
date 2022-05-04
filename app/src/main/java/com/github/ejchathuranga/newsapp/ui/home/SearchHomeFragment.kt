@@ -37,6 +37,8 @@ class SearchHomeFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        viewModel.setSearchString(requireArguments().getString("searchText")!!)
+
         initObservers()
         initEnv()
     }
