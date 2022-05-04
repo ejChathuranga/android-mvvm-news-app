@@ -1,5 +1,6 @@
 package com.github.ejchathuranga.newsapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,9 @@ import com.github.ejchathuranga.newsapp.data.adapters.TopNewsAdapter
 import com.github.ejchathuranga.newsapp.data.model.api.Article
 import com.github.ejchathuranga.newsapp.data.viewmodel.SearchHomeViewModel
 import com.github.ejchathuranga.newsapp.databinding.FragmentSearchHomeBinding
+import com.github.ejchathuranga.newsapp.ui.NewsActivity
 
-class SearchHomeFragment : Fragment() {
+class SearchHomeFragment : Fragment() ,OnNewsClick{
 
     lateinit var binding: FragmentSearchHomeBinding
     lateinit var viewModel: SearchHomeViewModel
@@ -56,6 +58,7 @@ class SearchHomeFragment : Fragment() {
     private fun initEnv() {
 
         topNewsAdapter = TopNewsAdapter()
+        topNewsAdapter.setCallback(this)
         binding.rvSearchResult.adapter = topNewsAdapter
         viewModel.search()
 
@@ -64,6 +67,15 @@ class SearchHomeFragment : Fragment() {
     public companion object {
         @JvmStatic
         public fun newInstance() = SearchHomeFragment()
+    }
+
+
+    override fun onCLick(article: Article) {
+        val intent = Intent(context, NewsActivity::class.java)
+
+        intent.putExtra("article", article)
+
+        startActivity(intent)
     }
 
 }
