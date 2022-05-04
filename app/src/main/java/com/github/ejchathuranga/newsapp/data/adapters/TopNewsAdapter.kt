@@ -10,9 +10,10 @@ import com.github.ejchathuranga.newsapp.ui.home.TopNewsViewHolder
 
 class TopNewsAdapter() : RecyclerView.Adapter<TopNewsViewHolder>() {
     private var dataList = ArrayList<Article>()
+    private lateinit var callback: OnNewsClick
 
     fun setCallback(cb: OnNewsClick) {
-
+        this.callback = cb
     }
 
     fun setData(dataList: ArrayList<Article>) {
@@ -28,7 +29,11 @@ class TopNewsAdapter() : RecyclerView.Adapter<TopNewsViewHolder>() {
     }
 
     override fun onBindViewHolder(holderTop: TopNewsViewHolder, position: Int) {
-        holderTop.bind(dataList[position])
+        val article = dataList[position]
+        holderTop.bind(article)
+        holderTop.itemView.setOnClickListener {
+            callback.onCLick(article)
+        }
     }
 
     override fun getItemCount(): Int {
