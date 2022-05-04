@@ -41,4 +41,10 @@ class NewsRepository {
             }
         })
     }
+
+    fun searchNews(
+        searchResult: MutableLiveData<ValidateResponse>
+    ) {
+
+    }
 }

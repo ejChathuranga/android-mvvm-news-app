@@ -7,18 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.github.ejchathuranga.newsapp.R
 import com.github.ejchathuranga.newsapp.data.adapters.BreakingNewsAdapter
 import com.github.ejchathuranga.newsapp.data.adapters.TopNewsAdapter
 import com.github.ejchathuranga.newsapp.data.model.api.Article
-import com.github.ejchathuranga.newsapp.data.viewmodel.DefaultHomeViewModel
-import com.github.ejchathuranga.newsapp.data.viewmodel.HomeViewModel
-import com.github.ejchathuranga.newsapp.databinding.FragmentDefaultHomeBinding
+import com.github.ejchathuranga.newsapp.data.viewmodel.SearchHomeViewModel
+import com.github.ejchathuranga.newsapp.databinding.FragmentSearchHomeBinding
 
-class DefaultHomeFragment : Fragment() {
+class SearchHomeFragment : Fragment() {
 
-    lateinit var binding: FragmentDefaultHomeBinding
-    lateinit var viewModel: DefaultHomeViewModel
+    lateinit var binding: FragmentSearchHomeBinding
+    lateinit var viewModel: SearchHomeViewModel
 
     lateinit var breakingNewsAdapter: BreakingNewsAdapter
     lateinit var topNewsAdapter: TopNewsAdapter
@@ -28,14 +26,14 @@ class DefaultHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDefaultHomeBinding.inflate(inflater, container, false)
+        binding = FragmentSearchHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(DefaultHomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SearchHomeViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -45,14 +43,6 @@ class DefaultHomeFragment : Fragment() {
 
 
     private fun initObservers() {
-
-        viewModel.getBreakingNews().observe(viewLifecycleOwner) {
-            if (it.success) {
-                breakingNewsAdapter.setData(it.data as ArrayList<Article>)
-            } else {
-                Toast.makeText(context, it.msg, Toast.LENGTH_SHORT).show()
-            }
-        }
 
         viewModel.getTopNews().observe(viewLifecycleOwner) {
             if (it.success) {
@@ -64,19 +54,16 @@ class DefaultHomeFragment : Fragment() {
     }
 
     private fun initEnv() {
-        breakingNewsAdapter = BreakingNewsAdapter()
-        binding.rvBreakingNews.adapter = breakingNewsAdapter
-        viewModel.searchBreakingNews()
 
         topNewsAdapter = TopNewsAdapter()
-        binding.rvTopNews.adapter = topNewsAdapter
-        viewModel.searchTopNews()
+        binding.rvSearchResult.adapter = topNewsAdapter
+        viewModel.search()
 
     }
 
     public companion object {
         @JvmStatic
-        public fun newInstance() = DefaultHomeFragment()
+        public fun newInstance() = SearchHomeFragment()
     }
 
 }
