@@ -2,6 +2,7 @@ package com.github.ejchathuranga.newsapp.ui.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.add
@@ -43,7 +44,10 @@ class HomeActivity : AppCompatActivity() {
             else
                 defaultView()
         }
-        viewModel.getSearchResult().observe(this) {
+        viewModel.getError().observe(this) {
+            if (!it.success) {
+                Toast.makeText(this, it.msg, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.github.ejchathuranga.newsapp.data.model.LoginUser
 import com.github.ejchathuranga.newsapp.data.model.ValidateResponse
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel : SuperViewModel() {
 
     private val username = MutableLiveData<String>()
     private val password = MutableLiveData<String>()

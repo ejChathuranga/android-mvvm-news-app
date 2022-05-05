@@ -8,7 +8,7 @@ import com.github.ejchathuranga.newsapp.data.model.User
 import com.github.ejchathuranga.newsapp.data.model.ValidateResponse
 import com.github.ejchathuranga.newsapp.domain.ValidateUserUserCase
 
-class RegisterViewModel : ViewModel() {
+class RegisterViewModel : SuperViewModel() {
     private val uname = MutableLiveData<String>()
     private val pass = MutableLiveData<String>()
     private val passConfirm = MutableLiveData<String>()

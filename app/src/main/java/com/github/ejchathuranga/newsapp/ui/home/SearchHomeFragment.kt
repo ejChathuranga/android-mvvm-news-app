@@ -53,6 +53,12 @@ class SearchHomeFragment : Fragment() ,OnNewsClick{
                 Toast.makeText(context, it.msg, Toast.LENGTH_SHORT).show()
             }
         }
+
+        viewModel.getError().observe(viewLifecycleOwner) {
+            if (!it.success) {
+                Toast.makeText(context, it.msg, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun initEnv() {

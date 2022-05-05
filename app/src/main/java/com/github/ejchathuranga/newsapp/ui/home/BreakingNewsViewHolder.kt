@@ -12,7 +12,7 @@ class BreakingNewsViewHolder(var binding: BreakingNewsHolderBinding) :
     @SuppressLint("SetTextI18n")
     fun bind(article: Article) {
 
-        if (article.urlToImage.isNotEmpty()) {
+        if (article.urlToImage != null && article.urlToImage.isNotEmpty()) {
             binding.tvBreakingNewsAuthor.text = "by " + article.author
             binding.tvBreakingNewsDescription.text = article.description
             binding.tvBreakingNewsTitle.text = article.title
