@@ -1,7 +1,7 @@
 # android-mvvm-news-app
 
 <p align="center">
-  <img src="./resources/demo.giff" width="250px">
+  <img src="./resources/demo.gif" width="250px">
   <br><br>
 </p>
 
